@@ -15,193 +15,229 @@ layout: default
   keksittyjä. Mahdolliset yhteydet todellisuuteen ovat sattumaa.
 </p>
 
-<h1>Vaihe 1. Tuntisarjojen lataus</h1>
+<section class="vaihe">
+    <h1>Vaihe 1. Tuntisarjojen lataus</h1>
 
-<p>
-  Aluksi ladataan todelliset kulutustietosi siirtoyhtiöltäsi
-  saatavassa muodossa. Tarvitset tuntitarkkuudella olevan
-  kulutustiedon mahdollisimman pitkältä ajalta.
-</p>
+    <p>
+      Aluksi ladataan todelliset kulutustietosi siirtoyhtiöltäsi
+      saatavassa muodossa. Tarvitset tuntitarkkuudella olevan
+      kulutustiedon mahdollisimman pitkältä ajalta.
+    </p>
 
-<label for="siirtoyhtio">Siirtoyhtiö (tiedostomuoto):</label>
-<select id="siirtoyhtio" name="siirtoyhtio">
-  <option>Oulun Energia/Pohjoista Voimaa (CSV)</option>
-  <option>Pohjois-Karjalan Sähkö (XLS)</option>
-</select>
-<p>Lataa tiedosto: <input type="file"></p>
+    <label for="siirtoyhtio">Siirtoyhtiö (tiedostomuoto):</label>
+    <select id="siirtoyhtio" name="siirtoyhtio">
+      <option>Oulun Energia/Pohjoista Voimaa (CSV)</option>
+      <option>Pohjois-Karjalan Sähkö (XLS)</option>
+    </select>
+    <p>Lataa tiedosto: <input type="file" id="datafile" onchange="dataFileChanged()"></p>
 
-<h1>Vaihe 2. Sopimuksen hinnan laskenta</h1>
+    <p id="vaihe1-result"></p>
+</section>
 
+<section class="vaihe">
+    <h1>Vaihe 2. Sopimuksen hinnan laskenta</h1>
 
-<table>
-  <tr>
-    <th>Energian myyjä/kuvaus</th>
-    <td><input type="text" value="Helsingin Energia"></td>
-  </tr>
-  <tr>
-    <th>Perusmaksu</th>
-    <td><input type="text" value="3,30"> c/kWh</td>
-  </tr>
-  <tr>
-    <th>Sopimustyyppi</th>
-    <td>
-      <input type="radio" name="sopimus" value="spot" checked="">Todellinen tuntisarja</input>
-      <input type="radio" name="sopimus" value="aika">Yö/päivä</input>
-      <input type="radio" name="sopimus" value="talviarki">Talviarkipäivä/muu</input>
-      <input type="radio" name="sopimus" value="yleis">Vakiohinta</input>
-    </td>
-  <tr>
-    <th>Spot-marginaali</th>
-    <td><input type="text" value="0,17"> c/kWh</td>
-  </tr>
-</table>
+    <div class="hidden" id="vaihe2-content">
+    <table>
+      <tr>
+        <th>Energian myyjä/kuvaus</th>
+        <td><input type="text" value="Helsingin Energia"></td>
+      </tr>
+      <tr>
+        <th>Perusmaksu</th>
+        <td><input type="text" value="3,30"> c/kWh</td>
+      </tr>
+      <tr>
+        <th>Sopimustyyppi</th>
+        <td>
+          <input type="radio" name="sopimus" value="spot" checked="">Todellinen tuntisarja</input>
+          <input type="radio" name="sopimus" value="aika">Yö/päivä</input>
+          <input type="radio" name="sopimus" value="talviarki">Talviarkipäivä/muu</input>
+          <input type="radio" name="sopimus" value="yleis">Vakiohinta</input>
+        </td>
+      <tr>
+        <th>Spot-marginaali</th>
+        <td><input type="text" value="0,17"> c/kWh</td>
+      </tr>
+    </table>
+    </div>
+</section>
 
+<section class="vaihe hidden">
+    <h1>Vaihe 3. Laskelman tulokset</h1>
 
-<h2>Kuukausikulutus</h2>
+    <div class="hidden" id="vaihe3-content">
+    <table>
+      <tr>
+        <th>Kuukausi</th>
+        <th>(päiviä)</th>
+        <th>Energia</th>
+        <th>Päivä</th>
+        <th>Yö</th>
+        <th>Yhteensä</th>
+        <th>Energia (lasku)</th>
+      </tr>
 
-<table>
-  <tr>
-    <th>Kuukausi</th>
-    <th>(päiviä)</th>
-    <th>Energia</th>
-    <th>Päivä</th>
-    <th>Yö</th>
-    <th>Yhteensä</th>
-    <th>Energia (lasku)</th>
-  </tr>
+    <tr><td>2014-01</td>
+    <td>31</td>
+    <td>5.34 c/kWh</td>
+    <td>1442 kWh</td>
+    <td>736 kWh</td>
+    <td>2178 kWh</td>
+    <td>119.56 €</td>
+    </TR>
+    <TR><td>2014-02</td>
+    <td>28</td>
+    <td>4.49 c/kWh</td>
+    <td>970 kWh</td>
+    <td>483 kWh</td>
+    <td>1454 kWh</td>
+    <td>68.55 €</td>
+    </TR>
+    <TR><td>2014-03</td>
+    <td>31</td>
+    <td>4.11 c/kWh</td>
+    <td>1005 kWh</td>
+    <td>525 kWh</td>
+    <td>1530 kWh</td>
+    <td>66.16 €</td>
+    </TR>
+    <TR><td>2014-04</td>
+    <td>30</td>
+    <td>4.13 c/kWh</td>
+    <td>763 kWh</td>
+    <td>433 kWh</td>
+    <td>1196 kWh</td>
+    <td>52.73 €</td>
+    </TR>
+    <TR><td>2014-05</td>
+    <td>31</td>
+    <td>4.77 c/kWh</td>
+    <td>612 kWh</td>
+    <td>335 kWh</td>
+    <td>948 kWh</td>
+    <td>48.5 €</td>
+    </TR>
+    <TR><td>2014-06</td>
+    <td>30</td>
+    <td>4.73 c/kWh</td>
+    <td>466 kWh</td>
+    <td>183 kWh</td>
+    <td>650 kWh</td>
+    <td>34.08 €</td>
+    </TR>
+    <TR><td>2014-07</td>
+    <td>31</td>
+    <td>4.87 c/kWh</td>
+    <td>348 kWh</td>
+    <td>171 kWh</td>
+    <td>519 kWh</td>
+    <td>28.62 €</td>
+    </TR>
+    <TR><td>2014-08</td>
+    <td>31</td>
+    <td>4.97 c/kWh</td>
+    <td>355 kWh</td>
+    <td>161 kWh</td>
+    <td>517 kWh</td>
+    <td>29.0 €</td>
+    </TR>
+    <TR><td>2014-09</td>
+    <td>30</td>
+    <td>4.98 c/kWh</td>
+    <td>576 kWh</td>
+    <td>307 kWh</td>
+    <td>884 kWh</td>
+    <td>47.39 €</td>
+    </TR>
+    <TR><td>2014-10</td>
+    <td>31</td>
+    <td>4.65 c/kWh</td>
+    <td>812 kWh</td>
+    <td>584 kWh</td>
+    <td>1396 kWh</td>
+    <td>68.28 €</td>
+    </TR>
+    <TR><td>2014-11</td>
+    <td>30</td>
+    <td>4.49 c/kWh</td>
+    <td>956 kWh</td>
+    <td>690 kWh</td>
+    <td>1646 kWh</td>
+    <td>77.17 €</td>
+    </TR>
+    <TR><td>2014-12</td>
+    <td>31</td>
+    <td>4.75 c/kWh</td>
+    <td>1055 kWh</td>
+    <td>697 kWh</td>
+    <td>1753 kWh</td>
+    <td>86.65 €</td>
+    </tr>
+    </table>
 
-<tr><td>2014-01</td>
-<td>31</td>
-<td>5.34 c/kWh</td>
-<td>1442 kWh</td>
-<td>736 kWh</td>
-<td>2178 kWh</td>
-<td>119.56 €</td>
-</TR>
-<TR><td>2014-02</td>
-<td>28</td>
-<td>4.49 c/kWh</td>
-<td>970 kWh</td>
-<td>483 kWh</td>
-<td>1454 kWh</td>
-<td>68.55 €</td>
-</TR>
-<TR><td>2014-03</td>
-<td>31</td>
-<td>4.11 c/kWh</td>
-<td>1005 kWh</td>
-<td>525 kWh</td>
-<td>1530 kWh</td>
-<td>66.16 €</td>
-</TR>
-<TR><td>2014-04</td>
-<td>30</td>
-<td>4.13 c/kWh</td>
-<td>763 kWh</td>
-<td>433 kWh</td>
-<td>1196 kWh</td>
-<td>52.73 €</td>
-</TR>
-<TR><td>2014-05</td>
-<td>31</td>
-<td>4.77 c/kWh</td>
-<td>612 kWh</td>
-<td>335 kWh</td>
-<td>948 kWh</td>
-<td>48.5 €</td>
-</TR>
-<TR><td>2014-06</td>
-<td>30</td>
-<td>4.73 c/kWh</td>
-<td>466 kWh</td>
-<td>183 kWh</td>
-<td>650 kWh</td>
-<td>34.08 €</td>
-</TR>
-<TR><td>2014-07</td>
-<td>31</td>
-<td>4.87 c/kWh</td>
-<td>348 kWh</td>
-<td>171 kWh</td>
-<td>519 kWh</td>
-<td>28.62 €</td>
-</TR>
-<TR><td>2014-08</td>
-<td>31</td>
-<td>4.97 c/kWh</td>
-<td>355 kWh</td>
-<td>161 kWh</td>
-<td>517 kWh</td>
-<td>29.0 €</td>
-</TR>
-<TR><td>2014-09</td>
-<td>30</td>
-<td>4.98 c/kWh</td>
-<td>576 kWh</td>
-<td>307 kWh</td>
-<td>884 kWh</td>
-<td>47.39 €</td>
-</TR>
-<TR><td>2014-10</td>
-<td>31</td>
-<td>4.65 c/kWh</td>
-<td>812 kWh</td>
-<td>584 kWh</td>
-<td>1396 kWh</td>
-<td>68.28 €</td>
-</TR>
-<TR><td>2014-11</td>
-<td>30</td>
-<td>4.49 c/kWh</td>
-<td>956 kWh</td>
-<td>690 kWh</td>
-<td>1646 kWh</td>
-<td>77.17 €</td>
-</TR>
-<TR><td>2014-12</td>
-<td>31</td>
-<td>4.75 c/kWh</td>
-<td>1055 kWh</td>
-<td>697 kWh</td>
-<td>1753 kWh</td>
-<td>86.65 €</td>
-</tr>
-</table>
+    <input type="button" value="Lisää vertailuun"</input>
+    </div>
+</section>
 
-<input type="button" value="Lisää vertailuun"</input>
+<section class="vaihe hidden">
+    <h1>Vaihe 4. Sopimusten vertailu</h1>
 
-<h1>Vaihe 3. Sopimusten vertailu</h1>
+    <div class="hidden" id="vaihe4-content">
+    <h2>Yhteenveto kulutuksesta</h2>
 
-<h2>Yhteenveto kulutuksesta</h2>
+    <p>Ajalle 1.1.2014–31.12.2014</p>
 
-<p>Ajalle 1.1.2014–31.12.2014</p>
+    <table>
+    <tr>
+      <th>Yhteensä</th>
+      <th>Päivä / Yö <small>1)</small></th>
+      <th>Talviarkipäivä/muu aika <small>2)</small></th>
+    </tr>
+    <tr>
+      <td>14676 kWh</td>
+      <td>9367 / 5309 kWh</td>
+      <td>– / –</td>
+    </tr>
+    </table>
 
-<table>
-<tr>
-  <th>Yhteensä</th>
-  <th>Päivä / Yö <small>1)</small></th>
-  <th>Talviarkipäivä/muu aika <small>2)</small></th>
-</tr>
-<tr>
-  <td>14676 kWh</td>
-  <td>9367 / 5309 kWh</td>
-  <td>– / –</td>
-</tr>
-</table>
+    <h2>Sopimuslaskelmat</h2>
 
-<h2>Sopimuslaskelmat</h2>
+    <table>
+      <tr>
+        <th>Sopimus: Kuvaus + hintaperuste</th>
+        <th>Kokonaishinta (1.1.2014–31.12.2014)</th>
+      </tr>
+      <tr>
+        <td>Helsingin Energia Spot+0,17c/kWh (3,30 €/kk)</td>
+        <td>690,39 €</td>
+      </tr>
+    </table>
 
-<table>
-  <tr>
-    <th>Sopimus: Kuvaus + hintaperuste</th>
-    <th>Kokonaishinta (1.1.2014–31.12.2014)</th>
-  </tr>
-  <tr>
-    <td>Helsingin Energia Spot+0,17c/kWh (3,30 €/kk)</td>
-    <td>690,39 €</td>
-  </tr>
-</table>
-
-(Edellisessä vaiheessa lasketut kokonaishinnat)
+    (Edellisessä vaiheessa lasketut kokonaishinnat)
+    </div>
+</section>
 
 </div>
+
+
+<!-- https://github.com/mholt/PapaParse -->
+<!-- License: MIT -->
+<script type="text/javascript" src="js/papaparse.min.js"></script>
+
+<script>
+    function dataFileChanged() {
+        // obtain input element through DOM
+        var fileobject = document.getElementById('datafile');
+        var file = fileobject.files[0];
+        Papa.parse(file, {
+            complete: function(results) {
+                console.log("Finished:", results.data);
+                var v1 = document.getElementById('vaihe1-result');
+                v1.textContent = "Luettu " + results.data.length + " riviä";
+                var v2 = document.getElementById('vaihe2-content');
+                v2.classList.remove("hidden");
+            }
+        });
+    }
+</script>
