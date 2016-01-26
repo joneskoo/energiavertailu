@@ -1,5 +1,8 @@
-# Energiavertailu
-Sähkösopimusten vertailutyökalu, joka perustaa laskelmat todellisille tuntisarjoille
+# Energiavertailu (konsepti)
+
+Sähkösopimusten vertailutyökalu, joka perustaa laskelmat todellisille tuntisarjoille ; kuollutta koodia.
+
+Tällainen työkalu olisi kätevä, mutta valitettavasti tällä hetkellä energian hintatiedot eivät ole vapaasti käytettävissä. Pelkästään omaan käyttöön tehtynä projektia tuskin kannattaa viedä loppuun.
 
 https://joneskoo.github.io/energiavertailu/
 
